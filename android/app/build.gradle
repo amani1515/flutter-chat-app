@@ -1,0 +1,43 @@
+android {
+    compileSdkVersion 33 // Latest supported version
+    apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+    defaultConfig {
+        applicationId "com.example.app" // Replace with your app's package name
+        minSdkVersion 21 // Minimum supported Android version
+        targetSdkVersion 33 // Match compileSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        // Enable multiDex for large dependency trees
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug // Replace this with actual release signing configs
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:1.9.0"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.8.0"
+    implementation "androidx.multidex:multidex:2.0.1" // For multiDex support
+}
